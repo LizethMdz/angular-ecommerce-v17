@@ -8,10 +8,7 @@
         <h1 class="mb-1 text-3xl font-medium text-gray-900 title-font">{{product()?.title}}</h1>
         <div class="flex mb-4">
           <span class="flex items-center">
-            @for (star of starsArray; track index; let index = $index) {
-            <span [innerHTML]="generateSVG(index)"></span>
-            }
-
+            <app-rate-product class="flex" [rateProduct]="product()?.rating?.rate"></app-rate-product>
             <span class="ml-3 text-gray-600"> {{product()?.rating?.count}} reviews</span>
           </span>
         </div>

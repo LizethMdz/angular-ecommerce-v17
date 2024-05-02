@@ -1,0 +1,6 @@
+<div class="flex items-center align-middle">
+    <p class="text-base text-orange-700 mr-2">Rating: </p>
+    @for (star of starsArray; track index; let index = $index) {
+        <span [innerHTML]="generateSVG(index)"></span>
+    }
+</div>

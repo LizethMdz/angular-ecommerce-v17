@@ -1,12 +1,13 @@
-import { CurrencyPipe, SlicePipe } from '@angular/common';
+import { CurrencyPipe, SlicePipe, JsonPipe  } from '@angular/common';
 import { Component, EventEmitter, Output, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { RateProductComponent } from '@features/products/rate-product/rate-product.component';
 import { Product } from '@shared/models/product.interface';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CurrencyPipe, SlicePipe, RouterLink],
+  imports: [CurrencyPipe, SlicePipe, RouterLink, JsonPipe, RateProductComponent],
   template: `
     <div
       class="p-4 mt-2 mb-6 overflow-hidden rounded-b-lg shadow-none hover:shadow-xl"
@@ -31,6 +32,10 @@ import { Product } from '@shared/models/product.interface';
             >{{ product().title | slice : 0 : 30 }}
           </a>
         </h2>
+        <h3 class="mb-1 text-base tracking-widest text-orange-500 title-font">
+          Review - {{ product().rating.count }}
+        </h3>
+        <app-rate-product class="flex" [rateProduct]="product().rating.rate"></app-rate-product> 
         <div class="flex items-center justify-between mt-1">
           <p class="text-2xl font-bold text-orange-500">
             {{ product().price | currency }}
