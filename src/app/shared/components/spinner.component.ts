@@ -5,7 +5,9 @@ import { SpinnerService } from '@shared/services/spinner.service';
   selector: 'app-spinner',
   standalone: true,
   imports: [],
-  template: ` @if (isLoading()) {
+  template: ` 
+  {{isLoading()}}
+  @if (isLoading()) {
     <div class="overlay">
       <div class="flex justify-center items-center min-h-screen">
         <div

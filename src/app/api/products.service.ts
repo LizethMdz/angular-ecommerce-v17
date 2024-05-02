@@ -9,7 +9,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '@envs/environment';
 import { Product } from '@shared/models/product.interface';
-import { map, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
@@ -40,5 +40,19 @@ export class ProductsService {
         this._http.get<Product>(`${this._endPoint}/products/${id}`)
       )
     );
+  }
+
+  public getCategories(): Observable<string[]> {
+    return this._http.get<string[]>(`${this._endPoint}/products/categories`);
+  }
+
+  public getCategoriesByName(categoryName: string) {
+    this._http.get<Product[]>(`${this._endPoint}/products/category/${categoryName}`).pipe(
+      map((products: Product[]) =>
+        products.map((product: Product) => ({ ...product, qty: 1 }))
+      ),
+      tap((products: Product[]) => this.products.set(products))
+    )
+      .subscribe();
   }
 }
