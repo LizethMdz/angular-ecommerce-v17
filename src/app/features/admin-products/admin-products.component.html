@@ -1,0 +1,35 @@
+<section class="py-8">
+  <div class="container px-4 mx-auto">
+    <div class="pt-4 bg-white shadow rounded">
+      <div class="flex px-6 pb-4 border-b">
+        <h3 class="text-xl font-bold">Recent Products</h3>
+      </div>
+      <div class="p-4 overflow-x-auto">
+        <table class="table-auto w-full">
+          <thead>
+            <tr class="text-xs text-gray-500 text-left">
+              <th class="pb-3 font-medium">ID</th>
+              <th class="pb-3 font-medium">Description</th>
+              <th class="pb-3 font-medium">Price</th>
+              <th class="pb-3 font-medium">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (product of productsList(); track $index) {
+              <tr class="text-xs bg-gray-50">
+                <td class="py-5 px-6 font-medium">{{product.id}}</td>
+                <td class="font-medium">{{product.title}}</td>
+                <td class="font-medium">{{product.price | currency}}</td>
+                <td>
+                  <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">Edit</span>
+                  <span class="inline-block py-1 px-2 text-white bg-red-500 rounded-full" (click)="deleteProduct(product.id)">Delete</span>
+                </td>
+              </tr>
+            }
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

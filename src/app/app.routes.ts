@@ -10,6 +10,10 @@ export const routes: Routes = [
     path: 'checkout',
     loadComponent: () => import('./features/checkout/checkout.component'),
   },
+  {
+    path: 'administration-products',
+    loadComponent: () => import('./features/admin-products/admin-products.component').then(adm => adm.AdminProductsComponent),
+  },
   { path: '', redirectTo: 'products', pathMatch: 'full' },
   { path: '**', redirectTo: 'products', pathMatch: 'full' },
 ];
